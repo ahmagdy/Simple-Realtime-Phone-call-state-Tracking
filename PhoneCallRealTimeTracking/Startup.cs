@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PhoneCallRealTimeTracking.Hubs;
 
 namespace PhoneCallRealTimeTracking
 {
@@ -26,6 +27,14 @@ namespace PhoneCallRealTimeTracking
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(options => options.AddPolicy("CorsPolicy",
+            builder =>
+            {
+                builder.AllowAnyMethod().AllowAnyHeader()
+                       .WithOrigins("http://localhost:4200")
+                       .AllowCredentials();
+            }));
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +49,12 @@ namespace PhoneCallRealTimeTracking
                 app.UseHsts();
             }
 
+            app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<PhoneCallHub>("/mapssss");
+            });
             app.UseMvc();
         }
     }
