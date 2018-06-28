@@ -11,6 +11,8 @@ export class CallControlComponent implements OnInit {
   connection: HubConnection;
   clientConnectionId: string;
 
+  isActive = false;
+
   constructor(
     private http: HttpClient
   ) { }
@@ -24,6 +26,7 @@ export class CallControlComponent implements OnInit {
       .catch(err => console.error(err.toString()));
     this.connection.on('StartCall', (callerConnectionId) => {
       this.clientConnectionId = callerConnectionId;
+      this.isActive = true;
       console.log(callerConnectionId);
     });
   }

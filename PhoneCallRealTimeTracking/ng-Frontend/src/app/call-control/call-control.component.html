@@ -1,5 +1,5 @@
 <div class="btn-group btn-group-lg" role="group" aria-label="...">
-  <button type="button" class="btn btn-secondary" (click)="changeCallState('ringing')">Ringing</button>
-  <button type="button" class="btn btn-secondary" (click)="changeCallState('Started')">StartCall</button>
-  <button type="button" class="btn btn-secondary" (click)="changeCallState('Ended')">EndCall</button>
+  <button type="button" class="btn" [ngClass]="{'btn-secondary':!isActive, 'btn-primary':isActive}" (click)="changeCallState('ringing')">Ringing</button>
+  <button type="button" class="btn" [ngClass]="{'btn-secondary':!isActive, 'btn-primary':isActive}" (click)="changeCallState('Started')">StartCall</button>
+  <button type="button" class="btn" [ngClass]="{'btn-secondary':!isActive, 'btn-primary':isActive}" (click)="changeCallState('Ended')">EndCall</button>
 </div>
