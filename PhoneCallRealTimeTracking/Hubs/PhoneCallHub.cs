@@ -17,10 +17,8 @@ namespace PhoneCallRealTimeTracking.Hubs
 
         public async Task ChangeCallState( string text)
         {
-            var x = Context.ConnectionId;
-            var y = Context.UserIdentifier;
-
-            await Clients.Client(x).SendAsync(text);
+            var connectionId = Context.ConnectionId;
+            await Clients.Client(connectionId).SendAsync(text);
         }
 
         public string GetConnectionId()

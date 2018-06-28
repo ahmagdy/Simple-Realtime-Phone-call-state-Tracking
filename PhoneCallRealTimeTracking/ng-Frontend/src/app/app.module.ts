@@ -1,16 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CallControlComponent } from './call-control/call-control.component';
+import { StartCallComponent } from './start-call/start-call.component';
+import { APP_BASE_HREF } from '@angular/common';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallControlComponent,
+    StartCallComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    NgbModule.forRoot()
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

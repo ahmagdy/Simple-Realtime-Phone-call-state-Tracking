@@ -51,11 +51,12 @@ namespace PhoneCallRealTimeTracking
 
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
+            app.UseMvc();
             app.UseSignalR(routes =>
             {
-                routes.MapHub<PhoneCallHub>("/mapssss");
+                routes.MapHub<PhoneCallHub>("/CallH");
             });
-            app.UseMvc();
+            
         }
     }
 }
